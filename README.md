@@ -13,7 +13,7 @@ An opt-in adult connection prototype built for Taipei Hack Day, October 4, 2026.
 - Explicitly labeled synthetic second-approval preview; no contact release or external messaging
 
 ## Important limits
-Live AI scouting is **not configured**. Demo scouting is scripted and is labeled in the UI and API. Sign-in does not supply API funding, verify age or public-handle ownership, or import private chats. Owner-provided links and metrics are unverified. No automatic scraping or metric ingestion exists. Usage evidence is not a compatibility/wealth score.
+Live AI scouting uses a bounded OpenAI Responses tool loop when the Site has a secret OPENAI_API_KEY. It searches eligible candidates, reads approved evidence and validates a structured shortlist. The demo can use live AI on explicitly fictional data; scripted previews stay labeled. Sign-in does not supply API funding, verify age or public-handle ownership, or import private chats. Owner-provided links and metrics are unverified. No automatic scraping or metric ingestion exists. Usage evidence is not a compatibility/wealth score.
 
 No real person is automatically enrolled. Demo-only mode is the default. Andrew's real portfolio is not seeded into either discovery pool. Switching to real discovery requires explicit owner opt-in. Friend does not automatically become Lover. Public launch is not authorized by this source deliverable.
 
@@ -38,6 +38,8 @@ npm run build
 npm start -- --port 8787
 python scripts/test-api.py
 ```
+The model loop is capped at 12 candidates, 4 tool calls, 4 HTTP requests including one retry, 1,800 output tokens per request, and 20 seconds. Failed attempts count toward a 10-per-account/100-global daily prototype budget. Private matching preferences, authenticated email, contact data and unapproved evidence never go to the model.
+
 The API test script targets only loopback and uses local synthetic account headers. It writes local test records, including profile-shaped validation fixtures. Run on a disposable local DB. Never point it at production. It covers 24 cases: auth rejection, save/reload, isolation, Friend/Lover filtering, honest runtime labels, idempotency, independent consent, withdrawal, block privacy and reciprocal preferences.
 
 ## Structure
@@ -49,4 +51,6 @@ The API test script targets only loopback and uses local synthetic account heade
 - `public/assets/`: supplied Owen/Tracy portraits and generated fictional-project gallery
 
 ## Delivery
-This public repository contains the source prepared for judging. The deployed Site has separate access controls; publishing source does not change Site sharing. Project-specific hosting configuration and runtime databases are intentionally excluded. Copy `.openai/hosting.example.json` to `.openai/hosting.json` for portable local development.
+The app is publicly accessible for judging. User-specific profiles, preferences and actions still require ChatGPT sign-in. No real participant is automatically enrolled. API runtime verification is separate from source publication.
+
+Project-specific hosting configuration and runtime databases are intentionally excluded. Copy `.openai/hosting.example.json` to `.openai/hosting.json` for portable local development.
