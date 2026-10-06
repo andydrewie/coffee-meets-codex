@@ -19,3 +19,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media(max-width:380px){.topbar{padding-left:12px;padding-right:12px;gap:6px}.topbar .wordmark{font-size:.79rem}.brand-spark{margin-left:3px}.topbar nav button{padding:10px 6px}.brief-toolbar{display:grid;grid-template-columns:1fr}.segmented{justify-self:start}.brief-toolbar>.button{margin-left:0;justify-self:stretch}.person-title{gap:12px}.person-title h1{font-size:2.3rem}}
 .artwork.owner-art{background-image:none;background-color:#e7e9dc;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#879172;font-size:.8rem}
 .runtime-details{margin:-10px 0 20px}
+/* Fictional human portraits and companion variants. */
+.avatar img.portrait{object-fit:cover;object-position:center;padding:0}
+.bento-dot>img.figurine{object-fit:contain;border-radius:12px;flex-shrink:0}

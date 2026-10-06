@@ -1,27 +1,43 @@
 # Coffee Meets Codex
 
-An opt-in adult connection prototype built for Taipei Hack Day, October 4, 2026. Friend and Lover share a consent-first engine and a responsive personal-newspaper bento.
+A friendship and romance prototype for Codex users, made for Taipei Hack Day on October 4, 2026. Shared curiosity starts the conversation; each person chooses what comes next. Independent project, with no OpenAI or Coffee Meets Bagel affiliation.
 
-## What works
-- Genuine Sites dispatch-owned Sign in with ChatGPT
-- D1-backed owner profiles, private settings, saved briefs, interests and blocks
-- Five-step owner setup with a self-attested public profile link, optional self-described gender and public Mystery visibility
-- Owner-selected project, social and optional usage evidence with display/scout-use controls
-- Three clearly fictional adult demo connection cards per intention
-- Full bento, evidence sheet, two reasons, an uncertainty and a suggested opener
-- Persisted Pending, independent live participant approval endpoints, withdrawal and blocking
-- Explicitly labeled synthetic second-approval preview; no contact release or external messaging
+## Explore the demo
 
-## Important limits
-Live AI scouting uses a bounded OpenAI Responses tool loop when the Site has a secret OPENAI_API_KEY. It searches eligible candidates, reads approved evidence and validates a structured shortlist. The demo can use live AI on explicitly fictional data; scripted previews stay labeled. Sign-in does not supply API funding, verify age or public-handle ownership, or import private chats. Owner-provided links and metrics are unverified. No automatic scraping or metric ingestion exists. Usage evidence is not a compatibility/wealth score.
+- [Public showcase](https://andydrewie.github.io/coffee-meets-codex/) — a static presentation of the existing demo, with fictional adult profiles and approved artwork.
+- [Open the real app](https://coffee-meets-codex.andydrewie.chatgpt.site/app) — ChatGPT sign-in remains required for the app and its account-specific actions.
+- [Public demo film](https://www.youtube.com/watch?v=maVYbw1YPMk) · [original Drive copy](https://drive.google.com/file/d/1aVVIqIKvbZTJDMnnL31b3ijU746ZX-_Q/view?usp=drivesdk).
 
-No real person is automatically enrolled. Demo-only mode is the default. Andrew's real portfolio is not seeded into either discovery pool. Switching to real discovery requires explicit owner opt-in. Friend does not automatically become Lover. Source publication does not automatically enroll anyone into live discovery.
+The showcase does not create profiles, save interests, call a model, contact people, or enroll visitors in discovery. It hands off to the real app for sign-in. Friend and Lover remain separate choices. All sample people and projects are fictional; no real public profiles are published.
 
-## Stack
-React 19 + Vinext, Cloudflare Worker-compatible ESM, D1 with schema-only Drizzle migrations. Sites owns hosting, authentication, database bindings and sharing. The Worker entrypoint is `dist/server/index.js`; `.openai/hosting.json` declares logical DB binding.
+## Two deployment targets
 
-## Local development
+| Target | Source | Runtime |
+| --- | --- | --- |
+| GitHub Pages showcase | `showcase/` → `docs/` | Static HTML, CSS, JavaScript and approved demo images |
+| Sites app | `app/`, `lib/`, `db/`, `drizzle/` | React 19 / Vinext, Cloudflare Worker, D1 and Sites-managed ChatGPT identity |
+
+GitHub Pages serves only `docs/` from `main`. It cannot run the app's backend or authenticate users. Source publication does not deploy or migrate the live Sites app, change its access policy, or enroll anyone into discovery.
+
+The app snapshot was compared with Sites v6 checkpoint `ecb76659099c9ba54da6c3864173c9bc20233dcb`. The sync includes its fictional Mika/Noah portraits and Tina/Owen companion variants, with the existing cream, coral and sage identity. The auth helpers, API routes and fictional demo records remain unchanged. Environment-specific hosting configuration and runtime databases are excluded.
+
+## Build the static showcase
+
+These commands use Node.js built-ins and require no dependency install:
+
+```sh
+npm run build:showcase
+npm run check:showcase
+python3 -m http.server 4173 --directory docs
 ```
+
+Open `http://localhost:4173/` for a quick preview. Before publishing, also serve the built directory at `/coffee-meets-codex/` and check desktop/mobile layouts, keyboard interaction and the real app handoff. The offline checker validates every local asset reference against that repository subpath, checks the static output allowlist, and rejects runtime API calls. It is not a replacement for browser verification.
+
+Edit `showcase/`, then rebuild and commit the generated `docs/` target. The builder copies only three static source files, the favicon, seven approved demo assets and `.nojekyll`; it refuses unexpected existing output files. No workflow, credentials, model key or backend configuration is required by this target.
+
+## Develop the full-stack app
+
+```sh
 cp .openai/hosting.example.json .openai/hosting.json
 npm ci
 npm run db:generate
@@ -30,28 +46,16 @@ node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1
 node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0001_jittery_prima.sql
 npm run dev
 ```
-Portable development has an explicitly local sign-in fixture; this is absent from production output. Do not mistake local identity-header tests for real two-account consent testing. If the runtime home is read-only, use writable `npm_config_cache` and `XDG_CONFIG_HOME` paths for those tools.
 
-## Checks
-```
+Portable development has an explicitly local sign-in fixture, absent from production output. Hosted identity is provided by Sites. Local fixture tests are not evidence of independent real-account approval.
+
+```sh
 npx tsc --noEmit
 npm run build
 npm start -- --port 8787
-python scripts/test-api.py
+python3 scripts/test-api.py
 ```
-The model loop is capped at 12 candidates, 4 tool calls, 4 HTTP requests including one retry, 1,800 output tokens per request, and 20 seconds. Failed attempts count toward a 10-per-account/100-global daily prototype budget. Private matching preferences, authenticated email, contact data and unapproved evidence never go to the model.
 
-The API test script targets only loopback and uses local synthetic account headers. It writes local test records, including profile-shaped validation fixtures. Run on a disposable local DB. Never point it at production. It covers 24 cases: auth rejection, save/reload, isolation, Friend/Lover filtering, honest runtime labels, idempotency, independent consent, withdrawal, block privacy and reciprocal preferences.
+The API checks write synthetic records to a disposable loopback database. Never point them at production. They cover authentication rejection, isolation, profile persistence, Friend/Lover eligibility, consent, withdrawal and blocking.
 
-## Structure
-- `app/app/coffee-app.tsx`: four screen families and source/interest dialogs
-- `app/api/[...path]/route.ts`: app API and consent state machine
-- `lib/server.ts`: validation, projections and eligibility
-- `lib/demo.ts`: unmistakably fictional adult fixtures
-- `db/schema.ts`, `drizzle/`: durable storage schema and migration
-- `public/assets/`: supplied Owen/Tracy portraits and generated fictional-project gallery
-
-## Delivery
-The app is publicly accessible for judging. User-specific profiles, preferences and actions still require ChatGPT sign-in. No real participant is automatically enrolled. API runtime verification is separate from source publication.
-
-Project-specific hosting configuration and runtime databases are intentionally excluded. Copy `.openai/hosting.example.json` to `.openai/hosting.json` for portable local development.
+The app source supports a bounded OpenAI Responses scout only when its Sites environment has an authorized `OPENAI_API_KEY`; publishing this repository does not configure or verify live inference. Scripted previews remain labeled. Sign-in does not verify age or public-handle ownership, import private chats, or fund API use. Profile links and optional activity evidence are owner supplied; usage is never a compatibility or wealth score. No automatic scraping, contact release or external messaging is implemented.

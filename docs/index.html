@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf6ef">
+  <meta name="description" content="Coffee Meets Codex — a thoughtful connection prototype for Codex users. Explore the fictional demo, then open the app with ChatGPT sign-in.">
+  <meta property="og:title" content="Coffee Meets Codex — a little curiosity, a real possibility.">
+  <meta property="og:description" content="Friendship, romance, and the person behind the project. Explore the prototype demo.">
+  <meta property="og:type" content="website">
+  <title>Coffee Meets Codex · The demo</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./demo.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="#" aria-label="Coffee Meets Codex home">coffee meets <b>codex</b><span aria-hidden="true">✳</span></a>
+    <nav aria-label="Main navigation"><a href="#demo">Explore the demo</a><a class="nav-app" href="https://coffee-meets-codex.andydrewie.chatgpt.site/app">Open app <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="dot" aria-hidden="true"></span> A LITTLE CURIOSITY. A REAL POSSIBILITY.</p>
+        <h1 id="hero-title">Meet the person<br>behind the <em>project.</em></h1>
+        <p class="lede">Friendship, romance, and a little shared curiosity.<br class="wide-only"> Thoughtful connections for people who use Codex.</p>
+        <div class="hero-actions"><a class="button primary" href="#demo">Explore the demo <span aria-hidden="true">↓</span></a><a class="film-link" href="https://www.youtube.com/watch?v=maVYbw1YPMk"><span class="play" aria-hidden="true">▶</span> Watch the demo film <span aria-hidden="true">↗</span></a></div>
+        <p class="hero-note">An independent prototype. A small glimpse of what’s possible.</p>
+      </div>
+      <div class="hero-art" aria-label="Owen, the demo’s green frog companion, beside a coffee brief">
+        <div class="orbit"><img src="./assets/owen.png" alt="Owen, a lime-green frog with a monocle and bow tie" width="512" height="477" fetchpriority="high"></div>
+        <div class="floating-note">A shared curiosity<br>can be a lovely start.<span aria-hidden="true">✳</span></div>
+        <div class="little-brief"><p class="eyebrow">YOUR DAILY COFFEE BRIEF</p><h2>Less scrolling.<br>More possibility.</h2><p>Thoughtful connections.<br>Clear reasons. Your decision.</p><div class="pills"><span>Friend</span><span class="coral">Lover</span></div></div>
+      </div>
+    </section>
+    <section class="demo-section" id="demo" aria-labelledby="demo-title">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">A TASTE OF THE DEMO</p><h2 id="demo-title">Your daily coffee brief<span class="flower" aria-hidden="true">✳</span></h2><p>A few curious people. A thoughtful place to start.</p></div><p class="demo-caption"><span class="dot" aria-hidden="true"></span> Static preview · fictional adults</p></div>
+        <div class="demo-toolbar"><div class="segmented" role="group" aria-label="Preview intention"><button type="button" data-intention="friend" aria-pressed="true"><span aria-hidden="true">☕</span> Friend</button><button type="button" data-intention="lover" aria-pressed="false"><span aria-hidden="true">♡</span> Lover</button></div><p id="intention-copy">A coffee, a conversation, perhaps something to make together.</p></div>
+        <div class="connection-grid" id="connections" aria-live="polite"></div>
+        <noscript><p class="no-script">Enable JavaScript to explore the fictional profiles, or <a href="https://coffee-meets-codex.andydrewie.chatgpt.site/app">open the app with ChatGPT sign-in</a>.</p></noscript>
+        <p class="demo-footnote">Illustrative profiles from the existing demo. No real people, matches, or messages here.</p>
+      </div>
+    </section>
+    <section class="invitation wrap" aria-labelledby="invitation-title">
+      <div class="invitation-art"><img src="./assets/tracy.png" alt="Tracy, the pink demo companion with round glasses" width="200" height="200" loading="lazy"></div>
+      <div><p class="eyebrow">FRIEND OR LOVER. ALWAYS YOUR CHOICE.</p><h2 id="invitation-title">Curiosity opens the door.<br>You choose what comes next.</h2><p>Explore the working prototype with your own sharing choices.<br class="wide-only"> Building together is one possibility. Connection is the point.</p><a class="button primary" href="https://coffee-meets-codex.andydrewie.chatgpt.site/app">Open app · Sign in with ChatGPT <span aria-hidden="true">↗</span></a><p class="signin-note">ChatGPT sign-in required · For adults 18+</p></div>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><a class="wordmark" href="#">coffee meets <b>codex</b><span aria-hidden="true">✳</span></a><p>Independent prototype. No OpenAI or Coffee Meets Bagel affiliation.</p><a href="https://github.com/andydrewie/coffee-meets-codex">View the source <span aria-hidden="true">↗</span></a></footer>
+  <dialog id="profile-dialog" aria-labelledby="profile-title"><div id="profile-content"></div></dialog>
+</body>
+</html>
