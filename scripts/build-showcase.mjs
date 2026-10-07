@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'docs');
 const assets = [
-  'gallery.png', 'owen.png', 'tracy.png', 'mika-portrait.png',
+  'gallery.png', 'owen.png', 'cmc-blue-codex-companion.png', 'mika-portrait.png',
   'noah-portrait.png', 'noah-companion-green.png', 'tina-blue.png',
 ];
 const copies = [

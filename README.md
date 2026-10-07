@@ -21,6 +21,8 @@ GitHub Pages serves only `docs/` from `main`. It cannot run the app's backend or
 
 The app snapshot was compared with Sites v6 checkpoint `ecb76659099c9ba54da6c3864173c9bc20233dcb`. The sync includes its fictional Mika/Noah portraits and Tina/Owen companion variants, with the existing cream, coral and sage identity. The auth helpers, API routes and fictional demo records remain unchanged. Environment-specific hosting configuration and runtime databases are excluded.
 
+The Pages invitation and Mika companion use the owner-approved transparent blue artwork, `public/assets/cmc-blue-codex-companion.png`, without cropping. Its SHA-256 is `9987fe6a5cf08771985b1d00dfb0eb8b7ab0e90da1db5750227bc879bb8afc2c`. The original pink asset remains in source history and `public/assets/tracy.png`, but is excluded from the Pages build.
+
 ## Build the static showcase
 
 These commands use Node.js built-ins and require no dependency install:

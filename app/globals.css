@@ -22,3 +22,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 /* Fictional human portraits and companion variants. */
 .avatar img.portrait{object-fit:cover;object-position:center;padding:0}
 .bento-dot>img.figurine{object-fit:contain;border-radius:12px;flex-shrink:0}
+
+/* Approved transparent companion: preserve the full silhouette at every size. */
+.avatar.companion-avatar{background:transparent;border-radius:0;overflow:visible}
+.avatar.companion-avatar img.tracy{object-fit:contain;object-position:center;padding:0;transform:none;border-radius:0}
+.bento-dot>img.blue-companion{object-fit:contain;object-position:center;border-radius:0;transform:none;width:117px;height:104px;flex-shrink:0}
+@media(max-width:800px){.bento-dot>img.blue-companion{width:83px;height:80px}}
+@media(max-width:560px){.bento-dot>img.blue-companion{width:80px;height:78px}}
